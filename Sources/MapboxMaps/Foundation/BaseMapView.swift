@@ -173,7 +173,7 @@ open class BaseMapView: UIView, CameraViewDelegate {
                                                object: nil)
 
         if let validStyleURI = styleURI {
-            __map?.setStyleURIForUri(validStyleURI.absoluteString)
+            __map?.setStyleURIForUri(validStyleURI.path)
         }
     }
 
