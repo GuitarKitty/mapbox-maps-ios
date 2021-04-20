@@ -31,6 +31,15 @@ extension CameraOptions {
                   pitch: pitch?.NSNumber)
     }
 
+    internal convenience init(with cameraOptions: CameraOptions) {
+        self.init(__center: cameraOptions.center?.location,
+                  padding: cameraOptions.padding?.toMBXEdgeInsetsValue(),
+                  anchor: cameraOptions.anchor?.screenCoordinate,
+                  zoom: cameraOptions.zoom?.NSNumber,
+                  bearing: cameraOptions.bearing?.NSNumber,
+                  pitch: cameraOptions.pitch?.NSNumber)
+    }
+
     public var center: CLLocationCoordinate2D? {
         get {
             return __center?.coordinate
@@ -85,13 +94,27 @@ extension CameraOptions {
         }
     }
 
-    // MARK: Equals function
-    public static func == (lhs: CameraOptions, rhs: CameraOptions) -> Bool {
-        return lhs.center == rhs.center &&
-               lhs.padding == rhs.padding &&
-               lhs.anchor == rhs.anchor &&
-               lhs.zoom == rhs.zoom &&
-               lhs.bearing == rhs.bearing &&
-               lhs.pitch == rhs.pitch
+    override open func isEqual(_ object: Any?) -> Bool {
+        guard let otherCameraOption = object as? CameraOptions else {
+            return false
+        }
+
+        return center == otherCameraOption.center &&
+               padding == otherCameraOption.padding &&
+               anchor == otherCameraOption.anchor &&
+               zoom == otherCameraOption.zoom &&
+               bearing == otherCameraOption.bearing &&
+               pitch == otherCameraOption.pitch
+    }
+
+    open override var hash: Int {
+        var hasher = Hasher()
+        hasher.combine(center)
+        hasher.combine(padding)
+        hasher.combine(zoom)
+        hasher.combine(anchor)
+        hasher.combine(bearing)
+        hasher.combine(pitch)
+        return hasher.finalize()
     }
 }
