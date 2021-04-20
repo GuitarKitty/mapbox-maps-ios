@@ -20,6 +20,18 @@ Mapbox welcomes participation and contributions from everyone.
       * The setter for `BaseMapView.__map` is now private
       * `Snapshotter` no longer conforms to `Observer`, and the method it required is now internal.
 
+  * ResourceOptions contains a tile store instance (TileStore API). Tile store usage is enabled by default, the resource option `tileStoreEnabled` flag is introduced to disable it.
+
+- Updates dependencies to MapboxCoreMaps 10.0.0-beta.20 and MapboxCommon 11.0.1
+
+### Features ✨ and improvements 🏁
+
+- Introduced the `OfflineManager` API that manages style packs and produces tileset descriptors for use with the tile store. The `OfflineManager` and `TileStore` APIs are used in conjunction to download offline regions and associated "style packs". These new APIs replace the deprecated `OfflineRegionManager`. Please see the new `OfflineManager` guide for more details.
+
+### Bug fixes 🐞
+
+- Fixed a crash in line layer rendering, where the uniform buffer size had an incorrect value.
+
 ## 10.0.0-beta.17 - April 13, 2021
 
 ### Breaking changes ⚠️
