@@ -248,7 +248,7 @@ class ViewController: UIViewController {
             let data = try JSONEncoder().encode(exp.self)
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
             color = mapView.__map.getStyleLayerProperty(forLayerId: land, property: "background-color")
-            
+
             print("Setting background color expression")
             mapView.__map.setStyleLayerPropertyForLayerId(land,
                                                           property: "background-color",
@@ -257,7 +257,7 @@ class ViewController: UIViewController {
             print("Error setting background color: \(error)")
         }
     }
-    
+
     func popColorExpression() {
         guard let land = styles[styleStep].1 else {
             return
